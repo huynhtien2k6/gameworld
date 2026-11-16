@@ -28,3 +28,4 @@ jobs:
           bash -n deploy/init-env.sh
           docker compose --project-directory deploy -f deploy/compose.yaml config --quiet
       - run: docker build -t gameworld:ci .
+      - run: python3 scripts/verify-container.py
