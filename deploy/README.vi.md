@@ -56,6 +56,24 @@ trước khi bootstrap. Thay biến bootstrap không đổi mật khẩu admin �
 
 ## Backup và cập nhật
 
+### Cập nhật tự động trên máy chủ hiện có
+
+Chạy trong cửa sổ SSH của máy chủ game:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/huynhtien2k6/gameworld/main/deploy/update.sh -o /tmp/gameworld-update.sh && bash /tmp/gameworld-update.sh
+```
+
+Có thể mở URL của script để xem nội dung trước khi chạy. Script dùng checkout
+`/home/ubuntu/gameworld` (hoặc biến `GW_REPO_DIR`), giữ file `.env` và volume,
+không đòi hỏi chia sẻ khóa bí mật. Nó chỉ cập nhật checkout trên nhánh `main`
+không có sửa đổi cục bộ, khóa chống cập nhật đồng thời, giữ API cũ khi build,
+thay API sau build thành công và kiểm tra `/health` cùng `/characters.html`.
+Nếu rollout lỗi, script khôi phục image trước đó. Không dùng script này cho
+bản cập nhật có thay đổi schema: rollback image không khôi phục database.
+Lệnh dùng `sudo -n`; người chạy cần quyền sudo không hỏi mật khẩu như user
+`ubuntu` mặc định của instance đã thiết lập.
+
 Sao lưu volume `game_data` trước cập nhật. Với SQLite, dừng API trong lúc sao lưu
 hoặc dùng SQLite online backup; không copy riêng file .db đang ghi rồi bỏ WAL.
 Lưu backup được mã hóa ngoài máy và thử khôi phục. `docker compose down` giữ volume;
