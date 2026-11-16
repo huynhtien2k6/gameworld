@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#263e32">
+  <title>Khám phá 3D · Thế Giới Mở</title>
+  <link rel="stylesheet" href="/play.css">
+  <script type="module" src="/world3d.js"></script>
+</head>
+<body>
+  <main id="viewport" aria-label="Thế giới game 3D"></main>
+  <div id="world-labels" aria-label="Nhân vật và địa điểm trong thế giới"></div>
+  <header class="topbar">
+    <a class="round home-link" href="/" aria-label="Về bảng điều khiển">←</a>
+    <div class="location"><span class="eyebrow">THẾ GIỚI MỞ</span><h1 id="location">Một hành trình mới</h1><span id="zone">Đang kết nối thế giới…</span></div>
+    <div class="top-actions"><button id="chat" class="glass" aria-label="Trò chuyện trong vùng">✉ <span>Trò chuyện</span></button><button id="travel" class="glass">⌖ <span>Bản đồ</span></button><button id="help" class="round" aria-label="Hướng dẫn điều khiển">?</button></div>
+  </header>
+  <aside class="weather glass" aria-label="Thời tiết hiện tại"><span id="weather-icon">☀</span><div><strong id="weather">Đang tải thời tiết</strong><small id="season">Mùa và ánh sáng theo máy chủ</small></div></aside>
+  <div class="compass" aria-hidden="true"><span>T</span><b>B</b><span>Đ</span></div>
+  <section class="player-card glass" aria-label="Thông tin nhân vật">
+    <div class="portrait" aria-hidden="true">✧</div><div class="player-info"><div class="player-title"><strong id="player-name">Nhà lữ hành</strong><span id="level">Cấp 1</span></div><div class="health-track"><div id="health-fill"></div></div><div class="player-bottom"><span id="health">— / — HP</span><strong id="gold">— vàng</strong></div></div>
+  </section>
+  <div class="zoom"><button id="zoom-in" class="round" aria-label="Phóng gần">+</button><button id="zoom-out" class="round" aria-label="Thu xa">−</button></div>
+  <div id="context-hint" class="context-hint hidden"></div>
+  <nav class="actionbar glass" aria-label="Hành động của nhân vật">
+    <button id="interact"><span class="action-icon">◇</span><span>Tương tác</span><kbd>E</kbd></button>
+    <button id="attack"><span class="action-icon">⚔</span><span>Chiến đấu</span><kbd>F</kbd></button>
+    <button id="inventory"><span class="action-icon">▣</span><span>Hành trang</span><kbd>I</kbd></button>
+  </nav>
+  <div class="movement" aria-label="Điều khiển di chuyển bằng cảm ứng"><button data-move="forward" class="move up" aria-label="Đi tới">▲</button><button data-move="left" class="move left" aria-label="Sang trái">◀</button><button data-move="back" class="move down" aria-label="Đi lùi">▼</button><button data-move="right" class="move right" aria-label="Sang phải">▶</button></div>
+  <p class="desktop-hint">W A S D · Di chuyển <span>／</span> Kéo chuột · Xoay góc nhìn</p>
+  <section id="panel" class="panel hidden" aria-labelledby="panel-title" role="dialog" aria-modal="true"><header><div><span class="eyebrow" id="panel-caption">BÊN NHAU TRÊN HÀNH TRÌNH</span><h2 id="panel-title">Khám phá</h2></div><button id="close-panel" class="round" aria-label="Đóng bảng">×</button></header><div id="panel-content"></div></section>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <section id="loading" class="loading" aria-live="polite"><div class="loading-card"><div class="loading-mark" aria-hidden="true">✧</div><span class="eyebrow">NHỮNG MIỀN ĐẤT MỚI</span><h2 id="loading-title">Ngôi làng đang thức giấc.</h2><p id="loading-message">Đang chuẩn bị chuyến đi và kết nối nhân vật của bạn…</p><a id="loading-link" class="primary hidden" href="/">Về trang nhân vật</a></div></section>
+  <noscript><div class="loading"><div class="loading-card"><h2>Trình duyệt cần bật JavaScript.</h2><p>Bạn có thể quản lý tài khoản và nhân vật tại trang chính.</p><a href="/">Về trang chính</a></div></div></noscript>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "com.gameworld.unity-client",
+  "version": "0.1.0",
+  "displayName": "GameWorld Unity Client",
+  "description": "Unity client prototype for the GameWorld API.",
+  "unity": "2022.3",
+  "author": {
+    "name": "GameWorld"
+  }
+}

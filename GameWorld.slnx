@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GameWorld.Domain/GameWorld.Domain.csproj" />
+  <Project Path="GameWorld.Infrastructure/GameWorld.Infrastructure.csproj" />
+  <Project Path="GameWorld.Api/GameWorld.Api.csproj" />
+</Solution>
