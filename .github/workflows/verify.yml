@@ -1,0 +1,31 @@
+name: Verify game and deployment
+on:
+  push:
+    branches: [main, codex/aws-single-server]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet restore GameWorld.slnx
+      - run: dotnet build GameWorld.slnx --no-restore -c Release
+      - name: Integration checks with isolated database
+        shell: pwsh
+        run: ./scripts/verify.ps1
+      - name: Validate deployment configuration
+        env:
+          GAME_DOMAIN: example.com
+          JWT_KEY: ci-validation-only
+          ADMIN_PASSWORD: ci-validation-only
+        run: |
+          bash -n deploy/init-env.sh
+          docker compose --project-directory deploy -f deploy/compose.yaml config --quiet
+      - run: docker build -t gameworld:ci .
+      - run: python3 scripts/verify-container.py

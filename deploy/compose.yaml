@@ -1,0 +1,44 @@
+# Linux only: loopback API and host Caddy keep proxy trust explicit.
+services:
+  api:
+    build:
+      context: ..
+    image: gameworld:local
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://127.0.0.1:8080
+      ASPNETCORE_HTTPS_PORT: '443'
+      Database__Provider: Sqlite
+      Database__Initialize: 'true'
+      ConnectionStrings__DefaultConnection: Data Source=/app/App_Data/gameworld.db
+      JwtSettings__Key: ${JWT_KEY:?Run init-env.sh first}
+      BootstrapAdmin__Username: ${ADMIN_USERNAME:-admin}
+      BootstrapAdmin__Password: ${ADMIN_PASSWORD:?Run init-env.sh first}
+    volumes:
+      - game_data:/app/App_Data
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+  caddy:
+    image: caddy:2.10
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      GAME_DOMAIN: ${GAME_DOMAIN:?Set GAME_DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+volumes:
+  game_data:
+  caddy_data:
+  caddy_config:
