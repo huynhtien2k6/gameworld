@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c1522">
+  <meta name="description" content="Chín tạo hình, chín câu chuyện. Chọn người lữ hành và khởi hành từ Làng Tân Thủ.">
+  <title>Chọn nhân vật · Thế Giới Mở</title>
+  <link rel="preload" href="/assets/characters/roster-atlas.png" as="image">
+  <link rel="stylesheet" href="/characters.css">
+  <script src="/common.js" defer></script>
+  <script src="/character-catalog.js" defer></script>
+  <script src="/characters.js" defer></script>
+</head>
+<body class="character-screen">
+  <a href="#character-title" class="skip-link">Đến thông tin nhân vật</a>
+  <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+  <header class="collection-header">
+    <a href="/" class="collection-brand" aria-label="Thế Giới Mở — Trang chính"><span class="brand-seal" aria-hidden="true">✥</span><span>THẾ GIỚI MỞ<small>VIẾT NÊN TRUYỀN THUYẾT CỦA BẠN</small></span></a>
+    <nav class="header-nav" aria-label="Điều hướng"><a href="/characters.html" aria-current="page">Nhân vật<span></span></a><a href="/">Thế giới</a><a href="/play.html">Hành trình 3D ↗</a></nav>
+    <button class="account-button" id="account-button" type="button"><span class="account-seal" aria-hidden="true">♙</span><span id="account-label">Đăng nhập</span><span aria-hidden="true">⌄</span></button>
+  </header>
+  <main class="collection-main">
+    <div class="collection-heading"><div><span class="eyebrow">NHỮNG NGƯỜI LỮ HÀNH</span><p>Mỗi linh hồn, một câu chuyện.</p></div><div class="chapter"><span>CHƯƠNG</span><strong>01</strong><i aria-hidden="true"></i><span>KHỞI NGUYÊN</span></div></div>
+    <section class="character-stage" aria-labelledby="character-title">
+      <div class="character-information">
+        <div class="character-category"><span id="character-symbol" aria-hidden="true">⟡</span><span id="character-category">NGUYỆT BẠC · KIẾM THUẬT</span></div>
+        <p class="character-subtitle" id="character-subtitle">Người canh giữ lời thề</p>
+        <h1 id="character-title" tabindex="-1">Long Vệ</h1>
+        <div class="ornament" aria-hidden="true"><span></span>✧<span></span></div>
+        <p class="character-description" id="character-description"></p>
+        <blockquote id="character-quote"></blockquote>
+        <div class="design-traits" id="design-traits" aria-label="Dấu ấn tạo hình"></div>
+        <div class="character-actions"><button type="button" class="gold-button" id="begin-journey">Chọn tạo hình này <span aria-hidden="true">→</span></button><button type="button" class="favorite-button" id="favorite-button" aria-label="Thêm Long Vệ vào yêu thích" aria-pressed="false">♡</button></div>
+        <p class="art-caption">Minh họa tạo hình 2D · Mô hình 3D đang phát triển</p>
+      </div>
+      <div class="character-art-stage">
+        <div class="astral-circle" aria-hidden="true"><i></i><span>✧</span></div>
+        <div id="hero-art" class="hero-art portrait-art portrait-5" role="img" aria-label="Minh họa Long Vệ, kiếm sĩ mặc giáp rồng bạc"></div>
+        <div class="art-frame" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span><span>✦</span></div>
+        <div class="art-number" aria-hidden="true"><span>TẠO HÌNH</span><strong id="art-number">06</strong><span>/ 09</span></div>
+        <div class="art-caption-bottom"><span id="art-world">NGUYỆT LONG</span><span>✧ THẾ GIỚI MỞ</span></div>
+        <button class="stage-arrow previous" id="previous-character" type="button" aria-label="Tạo hình trước">‹</button>
+        <button class="stage-arrow next" id="next-character" type="button" aria-label="Tạo hình tiếp theo">›</button>
+      </div>
+    </section>
+    <section class="roster" aria-labelledby="roster-title">
+      <div class="roster-toolbar"><h2 id="roster-title">Gặp gỡ những huyền thoại <span id="roster-count">09</span></h2><div class="roster-filters" role="group" aria-label="Lọc tạo hình"><button type="button" data-filter="all" aria-pressed="true" class="active">Tất cả</button><button type="button" data-filter="1" aria-pressed="false">Kiếm thuật</button><button type="button" data-filter="2" aria-pressed="false">Xạ thuật</button><button type="button" data-filter="3" aria-pressed="false">Pháp thuật</button><button type="button" data-filter="favorites" aria-pressed="false">♡ Yêu thích</button></div></div>
+      <div id="character-roster" class="character-roster" role="group" aria-label="Danh sách tạo hình"></div>
+      <p id="roster-empty" class="roster-empty hidden">Chưa có tạo hình yêu thích. Chọn biểu tượng trái tim để lưu người đồng hành của bạn.</p>
+    </section>
+    <footer class="collection-footer"><span><i aria-hidden="true"></i> Tất cả hành trình bắt đầu tại Làng Tân Thủ</span><span>← → Chuyển tạo hình <span class="footer-star">✧</span> Tên & cốt truyện đề xuất</span></footer>
+  </main>
+  <div id="selection-announcement" class="sr-only" aria-live="polite"></div>
+  <dialog id="auth-dialog" class="collection-dialog" aria-labelledby="auth-title">
+    <button type="button" class="close-dialog" data-close="auth-dialog" aria-label="Đóng đăng nhập">×</button><span class="dialog-seal" aria-hidden="true">✥</span>
+    <p class="eyebrow">MỘT HÀNH TRÌNH MỚI</p><h2 id="auth-title">Trở về thế giới</h2><p class="dialog-description">Đăng nhập để tạo nhân vật hoặc tiếp tục hành trình.</p>
+    <div class="auth-switch" role="group" aria-label="Chọn hình thức đăng nhập"><button type="button" id="login-tab" aria-pressed="true" class="active">Đăng nhập</button><button type="button" id="register-tab" aria-pressed="false">Tạo tài khoản</button></div>
+    <form id="collection-auth-form"><label>Tên đăng nhập<input name="username" autocomplete="username" required minlength="3" maxlength="50"></label><label id="registration-email" class="hidden">Email<input name="email" type="email" autocomplete="email" maxlength="255" disabled></label><label>Mật khẩu<input name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128"></label><p id="auth-error" class="form-error hidden" role="alert"></p><button type="submit" class="gold-button" id="auth-submit">Đăng nhập <span aria-hidden="true">→</span></button></form>
+  </dialog>
+  <dialog id="journey-dialog" class="collection-dialog journey-dialog" aria-labelledby="journey-title">
+    <button type="button" class="close-dialog" data-close="journey-dialog" aria-label="Đóng chọn nhân vật">×</button><span class="dialog-seal" aria-hidden="true">✥</span>
+    <p class="eyebrow">BẮT ĐẦU TỪ LÀNG TÂN THỦ</p><h2 id="journey-title">Đặt tên cho hành trình</h2><p class="dialog-description" id="journey-description"></p>
+    <div id="owned-characters" class="owned-characters"></div>
+    <form id="collection-create-form"><label>Tên nhân vật<input name="name" required minlength="3" maxlength="50" placeholder="Tên của người lữ hành" autocomplete="off"></label><div class="form-pair"><label>Nghề khởi đầu<select name="classId"><option value="1">Kiếm sĩ</option><option value="2">Cung thủ</option><option value="3">Pháp sư</option></select></label><label>Tộc người<select name="raceId"><option value="1">Nhân tộc</option><option value="2">Tinh linh</option><option value="3">Người lùn</option></select></label></div><p class="form-note">Tối đa 3 nhân vật. Chọn nghề quyết định lối chơi khởi đầu; minh họa chưa thay thế mô hình 3D trong game.</p><p id="journey-error" class="form-error hidden" role="alert"></p><button type="submit" class="gold-button">Tạo nhân vật & vào thế giới <span aria-hidden="true">→</span></button></form>
+    <button type="button" id="sign-out" class="text-button">Đăng xuất</button>
+  </dialog>
+</body>
+</html>

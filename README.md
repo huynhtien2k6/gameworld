@@ -94,3 +94,30 @@ Client 3D low-poly/cel-shading cho PC/mobile (Unity hoặc Godot), đồng bộ 
 Xem [hướng dẫn triển khai một máy chủ](deploy/README.vi.md) để chạy bản thử nghiệm
 bằng Docker, Caddy HTTPS và SQLite bền vững. Cấu hình AWS dùng region project
 `ap-southeast-2`; cần xác minh dịch vụ và chi phí trước khi tạo tài nguyên.
+
+## Màn chọn nhân vật
+
+Mở `/characters.html` hoặc bấm **Chọn tạo hình** trên trang chính. Màn hình có
+chín minh họa theo bộ ảnh tham khảo, xem chi tiết, lọc Kiếm thuật/Xạ thuật/Pháp
+thuật, lưu yêu thích và điều khiển bằng phím trái/phải. Trang hỗ trợ điện thoại,
+giảm chuyển động theo cài đặt hệ thống và đăng nhập/đăng ký ngay trong hộp thoại.
+
+Luồng **Chọn tạo hình này** dùng API hiện có để chọn nhân vật đã sở hữu hoặc tạo
+nhân vật mới (tối đa 3) rồi vào `/play.html`. Chọn nghề khởi đầu vẫn dùng ba nghề
+server đang hỗ trợ. Các danh xưng, yếu tố trang trí và mô tả tạo hình không cấp
+trang bị, kỹ năng hoặc chỉ số mới.
+
+Minh họa là tranh 2D mới diễn giải ảnh tham khảo; chưa phải mô hình nhân vật 3D.
+Yêu thích và lựa chọn artwork được lưu ở trình duyệt; không đồng bộ qua thiết bị.
+Tài khoản/nhân vật/gameplay vẫn được lưu và xác thực trên server như trước. Màn
+này không thay schema database và không yêu cầu migration.
+
+Sau khi cập nhật mã nguồn trên máy chủ đang chạy:
+
+```bash
+git pull --ff-only origin main
+sudo docker build -t gameworld:local .
+sudo docker compose --project-directory deploy -f deploy/compose.yaml up -d --no-build
+```
+
+Giữ nguyên file `deploy/.env` và các Docker volume trong lúc cập nhật.
