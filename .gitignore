@@ -6,3 +6,4 @@
 TestResults/
 .env
 artifacts/
+/deploy/.update.lock
