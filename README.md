@@ -88,3 +88,9 @@ Script tích hợp tự khởi động API với database/credential kiểm th�
 ## Các phần tiếp theo của game hoàn chỉnh
 
 Client 3D low-poly/cel-shading cho PC/mobile (Unity hoặc Godot), đồng bộ vị trí/chiến đấu thời gian thực, nhóm bạn và chat, bản đồ lớn với streaming, AI/NPC và nhiệm vụ phong phú, đoàn xe/đánh cướp tuyến đường, đấu giá/chợ đen/thuế bang hội, cửa hàng NPC bán offline, chống gian lận chuyên sâu, thanh toán và hạ tầng nhiều máy chủ chưa được triển khai đầy đủ trong bản nền tảng này.
+
+## Triển khai Linux / AWS
+
+Xem [hướng dẫn triển khai một máy chủ](deploy/README.vi.md) để chạy bản thử nghiệm
+bằng Docker, Caddy HTTPS và SQLite bền vững. Cấu hình AWS dùng region project
+`ap-southeast-2`; cần xác minh dịch vụ và chi phí trước khi tạo tài nguyên.

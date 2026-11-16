@@ -7,11 +7,18 @@ using GameWorld.Domain.Entities;
 using GameWorld.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
+// Only loopback proxies are trusted by default. Deployment uses Caddy on this host.
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.ForwardLimit = 1;
+});
 builder.WebHost.ConfigureKestrel(options => options.Limits.MaxRequestBodySize = 64 * 1024);
 var dataPath = Path.Combine(builder.Environment.ContentRootPath, "App_Data");
 Directory.CreateDirectory(dataPath);
@@ -83,6 +90,7 @@ builder.Services.AddRateLimiter(options =>
         new { message = "Bạn thao tác quá nhanh. Vui lòng thử lại sau một phút." }, cancellation);
 });
 var app = builder.Build();
+app.UseForwardedHeaders();
 await DatabaseBootstrap.InitializeAsync(app.Services, app.Configuration);
 app.Use(async (context, next) =>
 {
