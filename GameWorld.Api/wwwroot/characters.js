@@ -200,10 +200,11 @@
     } finally { control.disabled = false; }
   });
   $('#sign-out').addEventListener('click', async event => {
-    event.currentTarget.disabled = true;
+    const control = event.currentTarget;
+    control.disabled = true;
     try { await api('/api/auth/logout', {}); }
     catch (error) { if (sessionStorage.getItem(tokenKey)) { toast(error.message, true); return; } }
-    finally { event.currentTarget.disabled = false; }
+    finally { control.disabled = false; }
     sessionStorage.removeItem(tokenKey); sessionStorage.removeItem('gw.player.refresh'); sessionStorage.removeItem('gw.character');
     account = null; owned = []; $('#account-label').textContent = 'Đăng nhập'; journeyDialog.close(); toast('Đã đăng xuất.');
   });
